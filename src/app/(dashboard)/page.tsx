@@ -1,0 +1,9 @@
+const HomePage = () => {
+   return (
+      <div>
+         <h2>This is an authenticated route.</h2>
+      </div>
+   )
+}
+
+export default HomePage
