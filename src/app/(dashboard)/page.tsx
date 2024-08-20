@@ -1,7 +1,13 @@
+"use client"
+
+import { Button } from "@/components/ui/button"
+import { useNewAccount } from "@/features/accounts/hooks/useNewAccount"
+
 const HomePage = () => {
+   const { onOpen } = useNewAccount()
    return (
       <div>
-         <h2>This is an authenticated route.</h2>
+         <Button onClick={onOpen}>Add an account</Button>
       </div>
    )
 }

@@ -15,6 +15,13 @@
       "when": 1723893405567,
       "tag": "0001_red_gargoyle",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1723913745562,
+      "tag": "0002_icy_the_twelve",
+      "breakpoints": true
     }
   ]
 }
