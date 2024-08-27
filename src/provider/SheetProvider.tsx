@@ -2,11 +2,11 @@
 
 import { useMountedState } from "react-use"
 
-import EditAccountSheetAccounts from "@/features/accounts/components/EditAccountSheet"
-import NewAccountSheetAccounts from "@/features/accounts/components/NewAccountSheet"
+import EditSheetAccounts from "@/features/accounts/components/EditAccountSheet"
+import NewSheetAccounts from "@/features/accounts/components/NewAccountSheet"
 
-import EditAccountSheetCategories from "@/features/categories/components/EditCategorySheet"
-import NewAccountSheetCategories from "@/features/categories/components/NewCategorySheet"
+import EditSheetCategories from "@/features/categories/components/EditCategorySheet"
+import NewSheetCategories from "@/features/categories/components/NewCategorySheet"
 
 const SheetProvider = () => {
    const mounted = useMountedState()
@@ -15,11 +15,11 @@ const SheetProvider = () => {
 
    return (
       <>
-         <EditAccountSheetAccounts />
-         <NewAccountSheetAccounts />
+         <EditSheetAccounts />
+         <NewSheetAccounts />
 
-         <EditAccountSheetCategories />
-         <NewAccountSheetCategories />
+         <EditSheetCategories />
+         <NewSheetCategories />
       </>
    )
 }
