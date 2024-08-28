@@ -29,7 +29,7 @@ export const useEditAccount = (id?: string) => {
          // TODO: invalidate summary and transactions queries
       },
       onError: () => {
-         toast.success("Failed to create account!")
+         toast.success("Failed to edit account!")
       },
    })
 
