@@ -30,7 +30,7 @@ const formSchema = z.object({
 
 const apiSchema = insertTransactionsSchema.omit({ id: true })
 
-type TFormSchema = z.infer<typeof formSchema>
+export type TFormSchema = z.infer<typeof formSchema>
 type TApiFormSchema = z.infer<typeof apiSchema>
 
 type Props = {

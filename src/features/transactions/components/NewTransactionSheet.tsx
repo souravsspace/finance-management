@@ -11,10 +11,10 @@ import { useCreateTransaction } from "@/features/transactions/api/useCreateTrans
 import { useCreateCategory } from "@/features/categories/api/useCreateCategory"
 import useGetCategories from "@/features/categories/api/useGetCategories"
 import { useCreateAccount } from "@/features/accounts/api/useCreateAccount"
+import useGetAccounts from "@/features/accounts/api/useGetAccounts"
 import { Loader2 } from "lucide-react"
 import { insertTransactionsSchema } from "@/db/schema"
 import { z } from "zod"
-import useGetAccounts from "@/features/accounts/api/useGetAccounts"
 
 const formSchema = insertTransactionsSchema.omit({ id: true })
 type TFormSchema = z.infer<typeof formSchema>
