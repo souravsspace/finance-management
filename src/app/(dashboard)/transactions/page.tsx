@@ -12,6 +12,10 @@ import { useBulkDeleteTransactions } from "@/features/transactions/api/useBulkDe
 import { useState } from "react"
 import UploadButton from "./components/UploadButton"
 import ImportCard from "./components/ImportCard"
+import { transactions as transactionsSchema } from "@/db/schema"
+import { useSelectAccount } from "@/features/accounts/hooks/useSelectAccount"
+import { toast } from "sonner"
+import { useBulkCreateTransactions } from "@/features/transactions/api/useBulkCreateTransactions"
 
 enum VARIANTS {
    LIST = "list",
@@ -25,6 +29,7 @@ const INITIAL_IMPORT_RESULT = {
 }
 
 const TransactionsPage = () => {
+   const [AccountDialog, confirm] = useSelectAccount()
    const [variant, setVariant] = useState<VARIANTS>(VARIANTS.LIST)
    const [importResult, setImportResult] = useState(INITIAL_IMPORT_RESULT)
 
@@ -39,8 +44,8 @@ const TransactionsPage = () => {
    }
 
    const newTransaction = useNewTransaction()
+   const createTransactions = useBulkCreateTransactions()
    const deleteTransactions = useBulkDeleteTransactions()
-
    const transactionsQuery = useGetTransactions()
    const transactions = transactionsQuery.data || []
 
@@ -69,13 +74,38 @@ const TransactionsPage = () => {
       )
    }
 
+   const onSubmitImport = async (
+      values: (typeof transactionsSchema.$inferInsert)[]
+   ) => {
+      const accountId = await confirm()
+
+      if (!accountId) {
+         return toast.error("Please select an account to continue.")
+      }
+
+      const data = values.map((value) => ({
+         ...value,
+         accountId: accountId as string,
+      }))
+
+      createTransactions.mutate(
+         { json: data },
+         {
+            onSuccess: () => {
+               onCancel()
+            },
+         }
+      )
+   }
+
    if (variant === VARIANTS.IMPORT) {
       return (
          <>
+            <AccountDialog />
             <ImportCard
                data={importResult.data}
                onCancel={onCancel}
-               onSubmit={() => {}}
+               onSubmit={onSubmitImport}
             />
          </>
       )
