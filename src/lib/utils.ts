@@ -81,3 +81,22 @@ export function formatDateRange(period?: Period) {
 
    return format(period.from, "LLL dd, y")
 }
+
+export function formatPercentage(
+   value: number,
+   opts: {
+      addPrefix?: boolean
+   } = {
+      addPrefix: false,
+   }
+) {
+   const result = new Intl.NumberFormat("en-US", {
+      style: "percent",
+   }).format(value / 100)
+
+   if (opts.addPrefix && value > 0) {
+      return `+${result}`
+   }
+
+   return result
+}
