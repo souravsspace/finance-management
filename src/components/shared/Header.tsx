@@ -2,6 +2,7 @@ import { UserButton, ClerkLoaded, ClerkLoading } from "@clerk/nextjs"
 import HeaderLogo from "./HeaderLogo"
 import Navigation from "./Navigation"
 import WelcomeMessage from "./WelcomeMessage"
+import Filters from "./Filters"
 
 const Header = () => {
    return (
@@ -23,6 +24,7 @@ const Header = () => {
                </div>
             </div>
             <WelcomeMessage />
+            <Filters />
          </div>
       </header>
    )
